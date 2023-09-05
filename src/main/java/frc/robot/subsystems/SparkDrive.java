@@ -166,14 +166,14 @@ public class SparkDrive {
         double right = EncoderR.getPosition() * encoderConversionMeters; 
         
         double rightzero = EncoderR.getPosition() * encoderConversionMeters;
-        System.out.println("  right "+ right);
-        System.out.println("  EncoderR "+ EncoderR.getPosition());
-        System.out.println("  rightzero "+ rightzero);
-        System.out.println("  EncoderR "+ EncoderR.getPosition());
+        //System.out.println("  right "+ right);
+        //System.out.println("  EncoderR "+ EncoderR.getPosition());
+        //System.out.println("  rightzero "+ rightzero);
+        //System.out.println("  EncoderR "+ EncoderR.getPosition());
         while( (rightzero - distancia) < right && 0 < velocidad ){
           if(i==2400){
-            System.out.println("  right "+ right);
-            System.out.println("  EncoderR "+ EncoderR.getPosition());
+            System.out.println("  adelante "+ right);
+            System.out.println("  adelantezero "+ rightzero);
             i=0;
           }
           DriveL1.set(velocidad);
@@ -184,6 +184,29 @@ public class SparkDrive {
           right = EncoderR.getPosition() * encoderConversionMeters; 
           i=i+1;
         }
+
+        while( right < (distancia + rightzero)  &&   velocidad < 0){
+          if(i==2400){
+            System.out.println(" regresar "+ right);
+            System.out.println("  regresarzero "+ rightzero);
+            i=0;
+          }
+          DriveL1.set(velocidad);
+          DriveR1.set(-velocidad * Constantes.correcionDireccion); 
+          DriveL2.set(velocidad);
+          DriveR2.set(velocidad * Constantes.correcionDireccion);
+          
+          right = EncoderR.getPosition() * encoderConversionMeters; 
+          i=i+1;
+        }
+
+        DriveL1.set(0);
+        DriveR1.set(0); 
+        DriveL2.set(0);
+        DriveR2.set(0);
+        //System.out.println("  Regresar "+right);
+        //System.out.println("  regresar zero "+rightzero);
+        i=2400;
     }
     public void Girar(double angulo,double speed){
       System.out.println("Comienza Mover");

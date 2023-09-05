@@ -30,8 +30,8 @@ public static final double potenciaCadena = 0.5;
 public static final double encoderChasisMetros = 0.04517; // Factor de conversion de la posición del encoder a metros, si lo suben el robot se mueve menos en autonomo, si lo bajan se mueve mas
 public static final double encoderChasisGrados = 8.4; // Factor de conversion de la posición del encoder a grados en la funcion giro, si lo suben el robot se mueve menos en autonomo, si lo bajan se mueve mas
 public static final double encoderBrazoGrados = 1.5; // no funciona ahora
-public static final double encoderCadenaMetros = 1;
-public static final double encoderGarraVueltas = 1;
+public static final double encoderCadenaMetros = 0.05; // si aumentas se mueve menos
+public static final double encoderGarraVueltas = 0.1591;  //si aumentas gira menos
 
 
 

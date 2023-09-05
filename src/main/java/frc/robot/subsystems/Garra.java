@@ -14,7 +14,7 @@ import frc.robot.hardware.Constantes;
 
 public class Garra {
     DoubleSolenoid SMarco= new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
-    public CANSparkMax DriveUp = new CANSparkMax(5, MotorType.kBrushless);// esto no es vdd
+    public CANSparkMax DriveUp = new CANSparkMax(5, MotorType.kBrushless);// esto no es vdd   //si lo es >:(
     public CANSparkMax DriveDown = new CANSparkMax(6, MotorType.kBrushless);
 
     RelativeEncoder EncoderUp = DriveUp.getEncoder();
@@ -51,7 +51,7 @@ public class Garra {
         return Power;
      }
 
-     public void CadenaEncoder(double distancia,double velocidad){ //es para el autonomo
+     public void CadenaEncoderBajar(double distancia,double velocidad){ //es para el autonomo
         System.out.println("Sube la cadena");
           int i=2400;
           
@@ -59,22 +59,59 @@ public class Garra {
           double right = EncoderDown.getPosition() * encoderCadena; 
           
           double rightzero = EncoderDown.getPosition()* encoderCadena;
-          System.out.println("  right "+ right);
-          System.out.println("  EncoderR "+ EncoderDown.getPosition());
-          System.out.println("  rightzero "+ rightzero);
-          System.out.println("  EncoderR "+ EncoderDown.getPosition());
-          while( (rightzero - distancia) < right && 0 < velocidad ){
+          //System.out.println("  right "+ right);
+          //System.out.println("  EncoderDown "+ EncoderDown.getPosition());
+          //System.out.println("  rightzero "+ rightzero);
+          //System.out.println("  EncoderDown "+ EncoderDown.getPosition());
+          while( (rightzero + distancia) > right && 0 < velocidad ){
             if(i==2400){
-              System.out.println("  right "+ right);
-              System.out.println("  EncoderR "+ EncoderDown.getPosition());
+              System.out.println("  right1 "+ right);
+              System.out.println("  rightzero1 "+ rightzero);
+              System.out.println("  distancia1 "+ distancia);
               i=0;
             }
+            
             DriveDown.set(velocidad);
           
             right = EncoderDown.getPosition() * encoderCadena; 
             i=i+1;
           }
+          DriveDown.set(0);
+
         }
+
+        public void CadenaEncoderSubir(double distancia,double velocidad){ //es para el autonomo
+            System.out.println("Sube la cadena");
+              int i=2400;
+              
+      
+              double right = EncoderDown.getPosition() * encoderCadena; 
+              
+              double rightzero = EncoderDown.getPosition()* encoderCadena;
+              //System.out.println("  right "+ right);
+              //System.out.println("  EncoderDown "+ EncoderDown.getPosition());
+              //System.out.println("  rightzero "+ rightzero);
+              //System.out.println("  EncoderDown "+ EncoderDown.getPosition());
+              while( (rightzero - distancia) < right && 0 < velocidad ){
+                if(i==2400){
+                  System.out.println("  right2 "+ right);
+                  System.out.println("  rightzero2 "+ rightzero);
+                  System.out.println("  distancia2 "+ distancia);
+                  i=0;
+                }
+                DriveDown.set(-velocidad);
+              
+                right = EncoderDown.getPosition() * encoderCadena; 
+                i=i+1;
+              }
+              DriveDown.set(0);
+            }
+
+        public void LimpiarEncoder2(){
+            EncoderDown.setPosition(0);
+            EncoderUp.setPosition(0);
+
+          }
 
     public void Intake(){
         double potencia = Constantes.potenciaBrazo;
@@ -104,14 +141,15 @@ public class Garra {
           double right = EncoderUp.getPosition() * encoderIntake; 
           
           double rightzero = EncoderUp.getPosition() * encoderIntake;
-          System.out.println("  right "+ right);
-          System.out.println("  EncoderUp "+ EncoderUp.getPosition());
-          System.out.println("  rightzero "+ rightzero);
-          System.out.println("  EncoderUp "+ EncoderUp.getPosition());
-          while( (rightzero - rotaciones) < right && 0 < velocidad ){
+          //System.out.println("  right "+ right);
+          //System.out.println("  EncoderUp "+ EncoderUp.getPosition());
+          //System.out.println("  rightzero "+ rightzero);
+          //System.out.println("  EncoderUp "+ EncoderUp.getPosition());
+          while( (rightzero + rotaciones) > right && 0 < velocidad ){
             if(i==2400){
               System.out.println("  right "+ right);
-              System.out.println("  EncoderR "+ EncoderUp.getPosition());
+              System.out.println("  rightzero "+ rightzero);
+              System.out.println("  roraciones "+ rotaciones);
               i=0;
             }
             DriveUp.set(velocidad);
@@ -119,6 +157,7 @@ public class Garra {
             right = EncoderUp.getPosition() * encoderIntake; 
             i=i+1;
           }
+          DriveUp.set(0);
       }
 
     public void GarraAutonomo(double speed){
