@@ -184,33 +184,7 @@ public class SparkDrive {
           right = EncoderR.getPosition() * encoderConversionMeters; 
           i=i+1;
         }
-
-        while(  right < (distancia + rightzero) &&   velocidad < 0){
-          if(i==2400){
-            System.out.println("  right "+ right);
-            System.out.println("  EncoderR "+ EncoderR.getPosition());
-            i=0;
-          }
-          DriveL1.set(velocidad);
-          DriveR1.set(-velocidad * Constantes.correcionDireccion); 
-          DriveL2.set(velocidad);
-          DriveR2.set(velocidad * Constantes.correcionDireccion);
-          
-          right = EncoderR.getPosition() * encoderConversionMeters; 
-          i=i+1;
-        }
-
-        DriveL1.set(0);
-        DriveR1.set(0); 
-        DriveL2.set(0);
-        DriveR2.set(0);
-        System.out.println("  right "+ right);
-        System.out.println("  EncoderR "+ EncoderR.getPosition());
-        i=2400;
-        // System.out.println("X: " + positionX + " - Y: " + positionY + " - A: " + angle);
-      //  System.out.println("leftL: " + left + "  rightR: " + right + "  angle: " + angle);
     }
-
     public void Girar(double angulo,double speed){
       System.out.println("Comienza Mover");
         int i=2400;

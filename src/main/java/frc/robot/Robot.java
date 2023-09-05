@@ -83,7 +83,9 @@ public class Robot extends TimedRobot {
     Timer.delay(3);
     SparkDT.Mover(3, 0.1);
     Timer.delay(1);
-    SparkDT.Girar(90,0.2);
+    SparkDT.Girar(90,0.2); 
+    Timer.delay(1);
+    //GarraS.CadenaEncoder(1,0.8); //para cuando lo podamos probar
   }
   public void centro (){
     SparkDT.LimpiarEncoder();
