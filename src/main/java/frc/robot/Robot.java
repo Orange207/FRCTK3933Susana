@@ -103,7 +103,7 @@ public class Robot extends TimedRobot {
     GarraS.IntakeEncoder(10,0.8);           //soltar cubo
     Timer.delay(1);
     SparkDT.Mover(0.8, -0.25); //chocar rampa
-    Timer.delay(0.5);
+    Timer.delay(0.1);
     SparkDT.Mover(1.2, -0.1); //subir rampa 
   }
 
