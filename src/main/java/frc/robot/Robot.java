@@ -97,16 +97,14 @@ public class Robot extends TimedRobot {
     Timer.delay(3);
     SparkDT.Mover(0.5, 0.2);   //acerarce para cubo
     Timer.delay(1);
-    //GarraS.CadenaEncoderSubir(1.5,0.2); //para cuando lo podamos probar
+    //GarraS.CadenaEncoderSubir(4,0.2); //para cuando lo podamos probar
     //GarraS.LimpiarEncoder2();
     //Timer.delay(1);
     GarraS.IntakeEncoder(10,0.8);           //soltar cubo
-    //GarraS.CadenaEncoderBajar(1.5, 0.2);      //bajar elevador
-    //Timer.delay(1);
     Timer.delay(1);
-    SparkDT.Mover(0.6, -0.25); //chocar rampa
+    SparkDT.Mover(0.8, -0.25); //chocar rampa
     Timer.delay(0.5);
-    SparkDT.Mover(1.4, -0.1); //subir rampa 
+    SparkDT.Mover(1.2, -0.1); //subir rampa 
   }
 
   public void lejos (){
